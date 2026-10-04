@@ -31,7 +31,6 @@ class Process implements Runnable {
     private int remainingTime; // Time left for the process to finish its execution
     private int priority; // a priority that is random from 1 to 10, it doesn't have any real impact on the program 
     private static int context = 0;//context switching now has a global variable that adds up every time a new process is ran 
-    private boolean isItFirstRun = true; 
 
     // Constructor to initialize the process with name, burst time, and time quantum
     public Process(String name, int burstTime, int timeQuantum) {
@@ -49,10 +48,6 @@ class Process implements Runnable {
     @Override
     public void run() {
 
-        if (isItFirstRun){
-            context++;
-            isItFirstRun = false; // now I know if its the first time it ran or not
-        }
         System.out.println("current context = " + context); // TODO remove this tmp line in the final version
 
 
@@ -137,6 +132,10 @@ class Process implements Runnable {
         } catch (InterruptedException e) {
             System.out.println(Colors.RED + "  ✗ " + name + " was interrupted." + Colors.RESET);
         }
+    }
+
+    public static void  increaseContext() {
+        context++;
     }
 
     // Getter methods for process name, burst time, and remaining time
@@ -259,6 +258,7 @@ public class SchedulerSimulation {
             System.out.println(Colors.BOLD + Colors.MAGENTA + "└" + "─".repeat(79) + Colors.RESET + "\n");
             
             // Start the thread, which will run the process for one time quantum
+            Process.increaseContext(); // check the if (!processQueue.isEmpty()) { comment for why we can just do this
             currentThread.start();
             
             try {
@@ -274,7 +274,7 @@ public class SchedulerSimulation {
             // Check if the process is not finished
             if (!process.isFinished()) {
                 // If the process still has remaining time, check if there are more processes in queue
-                if (!processQueue.isEmpty()) {
+                if (!processQueue.isEmpty()) { // becasue of this check it means that a thread can never be re-ran normally if the last item is P1 there would be P1 -> P1 but bc we dont just requeue, this will never happen it would be ran to completion
                     // Re-enqueue the process to give it another chance to run in the next round
                     addProcessToQueue(process, processQueue, processMap);
                 } else {
