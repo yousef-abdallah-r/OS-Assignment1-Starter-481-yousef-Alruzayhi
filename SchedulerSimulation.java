@@ -30,6 +30,8 @@ class Process implements Runnable {
     private int timeQuantum; // Time slice (time quantum) allowed per CPU access (in milliseconds)
     private int remainingTime; // Time left for the process to finish its execution
     private int priority; // a priority that is random from 1 to 10, it doesn't have any real impact on the program 
+    private static int context = 0;//context switching now has a global variable that adds up every time a new process is ran 
+    private boolean isItFirstRun = true; 
 
     // Constructor to initialize the process with name, burst time, and time quantum
     public Process(String name, int burstTime, int timeQuantum) {
@@ -40,11 +42,20 @@ class Process implements Runnable {
         this.remainingTime = burstTime; // Initially, remaining time is equal to the burst time
         int fromZeroToNine = random.nextInt(9); // make value 0 to 9
         this.priority = fromZeroToNine + 1; // now its 1 to 10
+        
     }
 
     // This method will be called when the thread for this process is started
     @Override
     public void run() {
+
+        if (isItFirstRun){
+            context++;
+            isItFirstRun = false; // now I know if its the first time it ran or not
+        }
+        System.out.println("current context = " + context); // TODO remove this tmp line in the final version
+
+
         // Simulate running for either the time quantum or remaining time, whichever is smaller
         int runTime = Math.min(timeQuantum, remainingTime); // Run for the smaller of the two times
         
@@ -131,6 +142,9 @@ class Process implements Runnable {
     // Getter methods for process name, burst time, and remaining time
     public String getName() {
         return name;
+    }
+    public static int getContext() {
+        return context;
     }
 
     public int getPriority() {
@@ -272,7 +286,7 @@ public class SchedulerSimulation {
                 }
             }
         }
-        
+        System.out.println(Colors.BLUE + "Total context switches: " + Colors.RESET + Colors.GREEN + Process.getContext());
         // End of the scheduler simulation
         System.out.println(Colors.BOLD + Colors.BRIGHT_GREEN + 
                           "╔════════════════════════════════════════════════════════════════════════════════╗" + 
