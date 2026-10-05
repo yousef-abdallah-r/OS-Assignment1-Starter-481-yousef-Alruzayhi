@@ -39,7 +39,7 @@
 
 ## 🎥 Video Link
 
-**Video Link**: 446052587_Assignment1_Demo.webm
+**Video Link**: https://yousef-abdallah-r.github.io/OS-Assignment1-Starter-481-yousef-Alruzayhi/
 
 > ⚠️ **WARNING:** The video must be **publicly accessible** ("Anyone with the link can view") on **Google Drive**, **YouTube (Unlisted or Public)** or any other cloud file-sharing system. A private, restricted or broken link counts as a **missing video (-1 mark)**.
 >
