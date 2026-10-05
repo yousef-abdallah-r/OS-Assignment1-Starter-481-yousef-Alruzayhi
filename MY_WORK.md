@@ -39,7 +39,7 @@
 
 ## 🎥 Video Link
 
-**Video Link**: 446052587_Assignment1_Demo.mp4
+**Video Link**: 446052587_Assignment1_Demo.webm
 
 > ⚠️ **WARNING:** The video must be **publicly accessible** ("Anyone with the link can view") on **Google Drive**, **YouTube (Unlisted or Public)** or any other cloud file-sharing system. A private, restricted or broken link counts as a **missing video (-1 mark)**.
 >
@@ -297,7 +297,7 @@ also this is not the best assignment for privacy because you're making everythin
 
 **Your Answer:** *(3-5 sentences)*
 
-Map<Thread, Process> processMap = new HashMap<>(),  there is only one trend for every process why the opposite isnt true 
+a process is a running application inside of the os, while a thread is an execution of a process so for example a process can have multiple threads
 
 ## Question 2: Ready Queue Behavior
 
@@ -339,15 +339,15 @@ because p9 didn't finish it was readed to the queue where it could finish later.
 
 **Your Answer:** *(3-5 sentences overall; one short explanation per state)*
 
-1. **New**: first time it's created.
+1. **New**: first time it's created. Thread thread = new Thread(process);
 
-2. **Runnable**: after it initializes.
+2. **Runnable**: .start makes it runnable
 
-3. **Running**: when we call .start
+3. **Running**:  .run makes it run
 
 4. **Waiting**: usually it's waiting for something else to finsh, in this example how ever it's waiting to make sure that other threads get their time. like .sleep is for making the thread to wait for a period of time while .join is to wait for a thread to do its work
 
-5. **Terminated**: when its canceled like when the user terminates the program
+5. **Terminated**: when it returns like either its the end of the code block or we use return; explicity
 
 ## Question 4: Real-World Applications
 
