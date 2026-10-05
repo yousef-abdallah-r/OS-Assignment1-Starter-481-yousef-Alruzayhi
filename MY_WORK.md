@@ -29,11 +29,11 @@
 
 | Field | Your Answer |
 |-------|-------------|
-| **Full Name** | [Write your full name here] |
-| **Student ID** | [Write your student ID here] |
-| **University Email** | [yourid]@std.psau.edu.sa |
-| **GitHub Username** | [your-github-username] |
-| **Repository Link** | [Paste your repository link here] |
+| **Full Name** | yousef abdullah Alruzayhi  |
+| **Student ID** | 446052587 |
+| **University Email** | 446052587@std.psau.edu.sa |
+| **GitHub Username** | yousef-abdallah-r |
+| **Repository Link** | https://github.com/yousef-abdallah-r/OS-Assignment1-Starter-481-yousef-Alruzayhi |
  
 ---
 
@@ -126,26 +126,15 @@
 **Time spent**: 30 minutes
 
 ---
+unfortunately i just noticed the developer now so i'm using i just filled it in the correct time 
 
 ## Your Development Log
 
-### Entry 1 - [Date and Time]
-**What I did**:
+### Entry 1 -  (October 4, 2026 at 11:22 AM)
 
-**Details**:
+**What I did**: priority feature
 
-**Challenges**:
-
-**Solution**:
-
-**Time spent**:
-
----
-
-### Entry 2 - [Date and Time]
-**What I did**:
-
-**Details**:
+**Details**: i've implemented the priority implementation i also made a test find that i actually didn't end up using that much 
 
 **Challenges**:
 
@@ -155,12 +144,26 @@
 
 ---
 
-### Entry 3 - [Date and Time]
-**What I did**:
+### Entry 2 - (October 4, 2026 at 12:52 PM)
+**What I did**: context switching feature
 
-**Details**:
+**Details**: implemented the context switching, now every time the context switch the counter increases 
 
-**Challenges**:
+**Challenges**:  
+
+**Solution**:
+
+**Time spent**:
+
+
+---
+
+### Entry 3 - (October 4, 2026 at 1:40 PM)
+**What I did**: fixed context switching
+
+**Details**: context counter incresed "every run" not switch.
+
+**Challenges**:I misunderstood the "Increment the counter each time, a new process starts running" I thought it meant every new process run.
 
 **Solution**:
 
@@ -168,12 +171,12 @@
 
 ---
 
-### Entry 4 - [Date and Time]
-**What I did**:
+### Entry 4 - (October 5, 2026 at 10:02 AM)
+**What I did**: summary table feature 
 
-**Details**:
+**Details**: i calculated the waiting time by finding the full time it took then subtracting the brust time from it
 
-**Challenges**:
+**Challenges**: 
 
 **Solution**:
 
@@ -181,14 +184,14 @@
 
 ---
 
-### Entry 5 - [Date and Time]
-**What I did**:
+### Entry 5 - (October 5, 2026 at 10:16 AM)
+**What I did**: fixed repeating values
 
-**Details**:
+**Details**: now the table only writes each process once
 
-**Challenges**:
+**Challenges**: the table had repeating processes
 
-**Solution**:
+**Solution**: I added a bool check if we printed or not
 
 **Time spent**:
 
@@ -237,7 +240,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+not much actually, most of the assignment was working around them so i didn't get to use them directly to learn anything meaningful. just is that unlike normal coding it's very hard to debug when a thread is working and when it isn't.
 
 ## Question 2: What was the most challenging part of this assignment?
 
@@ -245,7 +248,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+I would say context switching because it was very hard for me to verify that actually every context switch happened once.
 
 ## Question 3: How did you overcome the challenges you faced?
 
@@ -253,7 +256,7 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+a lot of print statments, looking at the outward then reiterating until i got it right.
 
 ## Question 4: How can you apply multithreading concepts in real-world applications?
 
@@ -261,19 +264,20 @@
 
 **Your Answer:** *(5-7 sentences)*
 
-[Write your answer here.]
+probably something from this assignment like the progress bar, it's very interesting that you can make a program where the user works and at the same time there is something doing in the background. which I guess is how download works in chrome.
 
 ### Optional: What would you like to learn more about?
 
-[Any topics related to threading or operating systems that you're curious about?]
+well I hope next time I get to learn about actual threading and actually tackling the problem myself rather than working around it.
 
 ### Optional: How confident do you feel about multithreading concepts now?
 
-[Beginner / Intermediate / Confident. What do you understand well? What needs more practice?]
+I would say beginner, I would say that I thought I understood it more before I actually worked with it then realzied its more complex then I thought
 
 ### Optional: Feedback on the assignment
 
-[Any comments? Was it helpful? Too easy or hard? Suggestions?]
+make it so we actually write the threading part. also it's so confusing like I think more automated stages would make more sense something like freecodecamp or Codecademy, or at least you should have started with a checklist and made us read it first so everyone knows before hand every step. like ik everything is designed to be anti ai but i feel like the way you designed it makes it so much easier for ai because it can read so much text and so much harder for humans, and for context I could've easily used somehting like `unslop ai skill` and told the ai to make mistakes a long the way and it could've made a better soultions and more convicing student. all these checks just makes it harder for students instead.
+also this is not the best assignment for privacy because you're making everything public not just to the teacher but everybody who has their github account. 
 
 ---
 
@@ -293,7 +297,7 @@
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+Map<Thread, Process> processMap = new HashMap<>(),  there is only one trend for every process why the opposite isnt true 
 
 ## Question 2: Ready Queue Behavior
 
@@ -305,15 +309,27 @@
 
 **Your Answer:** *(3-5 sentences)*
 
-[Write your answer here.]
+it's readed to the queue to be done later addProcessToQueue(process, processQueue, processMap); look at this line, if it didnt finshed its going to use this function to add it back to the queue will unless its the last one
 
 Example from my output:
 ```
-[Paste a relevant snippet from your program output here showing a process being re-queued]
+┌─ Ready Queue ─────────────────────────────────────────────────────────────────
+│ [P10 → P11 → P12 → P13 → P14 → P15 → P16 → P17 → P18 → P1 → P2 → P3 → P4 → P5 → P6]
+└───────────────────────────────────────────────────────────────────────────────
+
+  ▶ P9 executing quantum [2000ms] 
+  ⚡ Quantum progress: [███████████████] 100%
+  ⏸ P9 completed quantum 2000ms │ Overall progress: [███████████░░░░░░░░░] 58%
+     Remaining time: 1410ms
+  ↻ P9 yields CPU for context switch
+
+  ➕ P9 (Priority: 1)  added to ready queue │ Burst time: 3410ms
+┌─ Ready Queue ─────────────────────────────────────────────────────────────────
+│ [P11 → P12 → P13 → P14 → P15 → P16 → P17 → P18 → P1 → P2 → P3 → P4 → P5 → P6 → P9]
 ```
 
 **Explanation of example:**
-[Explain what is happening in the output snippet you pasted.]
+because p9 didn't finish it was readed to the queue where it could finish later.
 
 ## Question 3: Thread Lifecycle
 
@@ -323,15 +339,15 @@ Example from my output:
 
 **Your Answer:** *(3-5 sentences overall; one short explanation per state)*
 
-1. **New**: [When is P1 in the New state?]
+1. **New**: first time it's created.
 
-2. **Runnable**: [When does P1 become Runnable?]
+2. **Runnable**: after it initializes.
 
-3. **Running**: [When is P1 Running?]
+3. **Running**: when we call .start
 
-4. **Waiting**: [When and why would a thread be Waiting?]
+4. **Waiting**: usually it's waiting for something else to finsh, in this example how ever it's waiting to make sure that other threads get their time. like .sleep is for making the thread to wait for a period of time while .join is to wait for a thread to do its work
 
-5. **Terminated**: [When is P1 Terminated?]
+5. **Terminated**: when its canceled like when the user terminates the program
 
 ## Question 4: Real-World Applications
 
@@ -341,32 +357,32 @@ Example from my output:
 
 **Your Answer:** *(3-5 sentences per example)*
 
-### Example 1 (operating-system level): [Name of scenario]
+### Example 1 (operating-system level): file deletion
 
 **Description**:
-[Describe the real-world scenario.]
+when deleting multiple files 
 
 **Why Round-Robin works well here**:
-[Fairness, responsiveness, predictability?]
+deleting a huge folder would feel much fair and faster to the user because each file is being deleted a bit by bit
 
-### Example 2: [Name of application/scenario]
+### Example 2: chrome
 
 **Description**:
-[Describe the real-world scenario or application.]
+when downloading multiple files
 
 **Why Round-Robin works well here**:
-[Fairness, responsiveness, predictability?]
+each file would be downloaded together rather than trying to download only one of them at a time which would feel much faster to the user 
 
 ## Summary
 
 **Key concepts I understood through these questions:**
-1.
-2.
-3.
+1. sleeping and waiting
+2. using queues to control a threads
+3. threading goes much deeper than it first seems
 
 **Concepts I need to study more:**
-1.
-2.
+1. how to make threads in real life applications 
+2. how to handle and control them at the same time 
 
 ---
 
@@ -382,29 +398,29 @@ Example from my output:
 **Code**
 - [x] Student ID is set in `SchedulerSimulation.java` (line 150)
 - [x] Code compiles and runs with no errors
-- [ ] Feature 1 (priority), Feature 2 (context switches) and Feature 3 (waiting time table) all work
-- [ ] Each feature has clear comments
+- [x] Feature 1 (priority), Feature 2 (context switches) and Feature 3 (waiting time table) all work
+- [x] Each feature has clear comments
 
 **Commits**
-- [ ] **At least 3 meaningful commits, ideally 6 or more**
-- [ ] **One commit per feature**
-- [ ] Commits are spread over **different dates** (not all in the last hour)
-- [ ] Everything is **pushed** to GitHub
+- [x] **At least 3 meaningful commits, ideally 6 or more**
+- [x] **One commit per feature**
+- [x] Commits are spread over **different dates** (not all in the last hour)
+- [x] Everything is **pushed** to GitHub
 
 **This file (`MY_WORK.md`)**
-- [ ] Full name and student ID filled in at the top
-- [ ] Development log has **5+ entries** on different dates
-- [ ] Reflection: 4 questions, 5-7 sentences each
-- [ ] Technical answers: 4 questions, 3-5 sentences each, with examples from **your** output
-- [ ] No `[...]` placeholders left
-- [ ] No section headers deleted
+- [x] Full name and student ID filled in at the top
+- [x] Development log has **5+ entries** on different dates
+- [x] Reflection: 4 questions, 5-7 sentences each
+- [x] Technical answers: 4 questions, 3-5 sentences each, with examples from **your** output
+- [x] No `[...]` placeholders left
+- [x] No section headers deleted
 
 **Video**
-- [ ] 2-3 minutes long, named `StudentID_Assignment1_Demo.mp4`
-- [ ] Shows your name, ID, repository, 3 features, IDE execution, one threading concept, and commit history
-- [ ] Link is **public** (tested in an incognito window) and pasted in the **Video Link** section above
+- [x] 2-3 minutes long, named `StudentID_Assignment1_Demo.mp4`
+- [x] Shows your name, ID, repository, 3 features, IDE execution, one threading concept, and commit history
+- [x] Link is **public** (tested in an incognito window) and pasted in the **Video Link** section above
 
 **Blackboard**
-- [ ] Submit **only** the link to your public GitHub repository
+- [x] Submit **only** the link to your public GitHub repository
 
 > 🎯 **Good luck!** Start early, commit regularly, and make sure you can explain every line you submit.
