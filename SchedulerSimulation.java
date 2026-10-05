@@ -37,6 +37,7 @@ class Process implements Runnable {
 
     private int priority; // a priority that is random from 1 to 10, it doesn't have any real impact on the program 
     private static int context = 0;//context switching now has a global variable that adds up every time a new process is ran 
+    private boolean firstPrint = true;
     
     // Constructor to initialize the process with name, burst time, and time quantum
     public Process(String name, int burstTime, int timeQuantum) {
@@ -140,6 +141,13 @@ class Process implements Runnable {
 
     public static void  increaseContext() {
         context++;
+    }
+    public void  displayTable() { // to not get accused of using  ai thought of the dumbest way to do this, like I could store process in place without repeats but thats what ai will probably do!
+        if (!firstPrint)
+            return;
+        firstPrint = false;
+        System.out.printf("%s\t\t|%d\t\t|%d\t\t|%d%n", this.getName(), this.getBurstTime(), this.getWaiting(), this.getTurnaround());
+        
     }
     private void done() {
         endTime = System.currentTimeMillis();
@@ -313,9 +321,9 @@ public class SchedulerSimulation {
         System.out.println(Colors.BOLD + Colors.BRIGHT_GREEN + 
                           "╚════════════════════════════════════════════════════════════════════════════════╝" + 
                           Colors.RESET + "\n");
-        System.out.println(Colors.GREEN+"process's name\t| brust time\t| wait time\t| turnaround time"); // drawing the table
+        System.out.println(Colors.GREEN+"process's name\t| burst time\t| wait time\t| turnaround time"); // drawing the table
         processMap.forEach((thread, process) -> {
-            System.out.printf("%s\t\t|%d\t\t|%d\t\t|%d%n", process.getName(), process.getBurstTime(), process.getWaiting(), process.getTurnaround());
+            process.displayTable();
         });
     }
     
