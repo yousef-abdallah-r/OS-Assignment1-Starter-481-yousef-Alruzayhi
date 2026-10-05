@@ -29,9 +29,15 @@ class Process implements Runnable {
     private int burstTime; // Total time the process requires to complete (in milliseconds)
     private int timeQuantum; // Time slice (time quantum) allowed per CPU access (in milliseconds)
     private int remainingTime; // Time left for the process to finish its execution
+    
+    private long turnaround; // to find the full time it took to complete we find the start and end 
+    private long startTime; // currentTimeMillis()  returns type long, so to be safe everything should be also long
+    private long endTime;
+    private long waiting;
+
     private int priority; // a priority that is random from 1 to 10, it doesn't have any real impact on the program 
     private static int context = 0;//context switching now has a global variable that adds up every time a new process is ran 
-
+    
     // Constructor to initialize the process with name, burst time, and time quantum
     public Process(String name, int burstTime, int timeQuantum) {
         Random random = new Random();
@@ -41,16 +47,12 @@ class Process implements Runnable {
         this.remainingTime = burstTime; // Initially, remaining time is equal to the burst time
         int fromZeroToNine = random.nextInt(9); // make value 0 to 9
         this.priority = fromZeroToNine + 1; // now its 1 to 10
-        
+        this.startTime = System.currentTimeMillis();
     }
 
     // This method will be called when the thread for this process is started
     @Override
     public void run() {
-
-        System.out.println("current context = " + context); // TODO remove this tmp line in the final version
-
-
         // Simulate running for either the time quantum or remaining time, whichever is smaller
         int runTime = Math.min(timeQuantum, remainingTime); // Run for the smaller of the two times
         
@@ -98,6 +100,7 @@ class Process implements Runnable {
             System.out.println(Colors.BRIGHT_GREEN + "  ✓ " + Colors.BOLD + Colors.CYAN + name + 
                               Colors.RESET + Colors.BRIGHT_GREEN + " finished execution!" + 
                               Colors.RESET);
+            done();
         }
         System.out.println();
     }
@@ -129,6 +132,7 @@ class Process implements Runnable {
             System.out.println(Colors.BRIGHT_GREEN + "  ✓ " + Colors.BOLD + Colors.CYAN + name + 
                               Colors.RESET + Colors.BRIGHT_GREEN + " finished execution!" + Colors.RESET);
             System.out.println();
+            done();
         } catch (InterruptedException e) {
             System.out.println(Colors.RED + "  ✗ " + name + " was interrupted." + Colors.RESET);
         }
@@ -136,6 +140,17 @@ class Process implements Runnable {
 
     public static void  increaseContext() {
         context++;
+    }
+    private void done() {
+        endTime = System.currentTimeMillis();
+        turnaround = endTime - startTime;
+        waiting= turnaround-burstTime;
+    }
+    public long getWaiting() {
+        return waiting;
+    }
+    public long getTurnaround() {
+        return turnaround;
     }
 
     // Getter methods for process name, burst time, and remaining time
@@ -298,6 +313,10 @@ public class SchedulerSimulation {
         System.out.println(Colors.BOLD + Colors.BRIGHT_GREEN + 
                           "╚════════════════════════════════════════════════════════════════════════════════╝" + 
                           Colors.RESET + "\n");
+        System.out.println(Colors.GREEN+"process's name\t| brust time\t| wait time\t| turnaround time"); // drawing the table
+        processMap.forEach((thread, process) -> {
+            System.out.printf("%s\t\t|%d\t\t|%d\t\t|%d%n", process.getName(), process.getBurstTime(), process.getWaiting(), process.getTurnaround());
+        });
     }
     
     // Method to add a process to the queue and map, while printing a "ready" message
@@ -318,4 +337,5 @@ public class SchedulerSimulation {
                           " │ Burst time: " + Colors.YELLOW + process.getBurstTime() + "ms" + 
                           Colors.RESET); // added priority just like the task asked
     }
+    
 }
